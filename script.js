@@ -81,3 +81,17 @@ document.querySelectorAll('.slider-container').forEach((container) => {
     updateSlider(); // Inicializa el estado del slider
 });
 
+
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener("click", function (e) {
+        e.preventDefault();
+  
+        const target = document.querySelector(this.getAttribute("href"));
+        target.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
+    });
+  });
+
+  //AVISO: Cantidad de productos data-id: (293)
