@@ -94,3 +94,9 @@ document.addEventListener("DOMContentLoaded", () => {
     // Llamada inicial para renderizar el carrito al cargar la página.
     renderCart();
 });
+
+document.getElementById("reset-cart").addEventListener("click", function () {
+    localStorage.removeItem("cart"); // Elimina el carrito almacenado
+    alert("Carrito reiniciado con éxito.");
+    location.reload(); // Recarga la página para reflejar los cambios
+});
