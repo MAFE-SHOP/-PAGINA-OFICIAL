@@ -91,6 +91,6 @@ document.addEventListener("DOMContentLoaded", () => {
         renderCart();
     });
 
-    // Llamada inicial para renderizar el carrito al cargar la página
+    // Llamada inicial para renderizar el carrito al cargar la página.
     renderCart();
 });
