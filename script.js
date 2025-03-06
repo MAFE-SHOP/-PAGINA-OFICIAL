@@ -119,7 +119,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!found && filter !== "") {
             setTimeout(() => {
                 alert("No se pudo encontrar ningún producto, por favor escriba otro nombre");
-            }, 500); 
+            }, 600); 
         }
     });
 
