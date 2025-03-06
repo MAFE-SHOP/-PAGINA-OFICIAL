@@ -94,4 +94,69 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
   });
 
+// Nueva funcionalidad
+
+document.getElementById('search-input').addEventListener('input', function() {
+    let filter = this.value.toLowerCase();
+    let products = document.querySelectorAll('.product');
+    
+    products.forEach(product => {
+        let productName = product.getAttribute('data-name').toLowerCase();
+        
+
+        if (productName.includes(filter)) {
+            product.style.display = '';
+        } else {
+            product.style.display = 'none';
+        }
+    });
+
+    
+    updateSliderVisibility();
+});
+
+// Asegura que los sliders se actualicen bien según los productos visibles
+function updateSliderVisibility() {
+    document.querySelectorAll(".slider-container").forEach(container => {
+        const visibleProducts = container.querySelectorAll(".product:not([style*='display: none'])");
+        const slider = container.querySelector(".slider");
+        const buttons = container.querySelector(".buttons");
+
+
+        if (visibleProducts.length === 0) {
+            container.style.display = "none";
+        } else {
+            container.style.display = "block";
+        }
+
+       
+        if (slider) {
+            slider.style.display = visibleProducts.length > 0 ? "flex" : "none";
+        }
+
+        
+        if (buttons) {
+            buttons.style.display = visibleProducts.length > 1 ? "flex" : "none";
+        }
+    });
+}
+
+document.getElementById('search-button').addEventListener('click', function(e) {
+    e.preventDefault(); 
+    document.querySelector('#main').scrollIntoView({ behavior: 'smooth' });
+    const hdosuno = document.querySelector("#agroquimicos");
+    const hdosdos = document.querySelector("#macetas");
+    const hdostres = document.querySelector("#accesorios");
+    const hdoscuatro = document.querySelector("#mascotas");
+    const hdoscinco = document.querySelector("#semillas");
+    const hdosseis = document.querySelector("#oportunidades");
+    
+    hdosuno.remove();
+    hdosdos.remove();
+    hdostres.remove();
+    hdoscuatro.remove();
+    hdoscinco.remove();
+    hdosseis.remove();
+  });
+
   //AVISO: Cantidad de productos data-id: (293)
