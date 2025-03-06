@@ -96,16 +96,31 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // Funcionalidad del buscador
-    document.getElementById('search-input').addEventListener('input', function() {
-        let filter = this.value.toLowerCase();
+    document.getElementById('search-button').addEventListener('click', function(e) {
+        e.preventDefault();
+    
+        let filter = document.getElementById('search-input').value.toLowerCase();
         let products = document.querySelectorAll('.product');
-
+        let found = false; 
+    
         products.forEach(product => {
             let productName = product.getAttribute('data-name').toLowerCase();
-            product.style.display = productName.includes(filter) ? '' : 'none';
+            if (productName.includes(filter)) {
+                product.style.display = '';
+                found = true; 
+            } else {
+                product.style.display = 'none';
+            }
         });
-
+    
         updateSliderVisibility();
+    
+       
+        if (!found && filter !== "") {
+            setTimeout(() => {
+                alert("No se pudo encontrar ningún producto, por favor escriba otro nombre");
+            }, 500); 
+        }
     });
 
 
@@ -122,6 +137,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 });
 
+//Desplazamieento y estilos del input
 document.addEventListener("DOMContentLoaded", () => {
     const searchBar = document.querySelector(".search-bar");
     const searchInput = document.getElementById("search-input");
