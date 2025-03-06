@@ -30,12 +30,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
     document.getElementById('search-button').addEventListener('click', function(e) {
         e.preventDefault();
-        document.querySelector('#main').scrollIntoView({ behavior: 'smooth' });
-
+        
+        const main = document.querySelector('#main');
+        const offset = main.getBoundingClientRect().top + window.scrollY - 50; // Ajusta el -50 si es necesario
+    
+        window.scrollTo({
+            top: offset,
+            behavior: 'smooth'
+        });
+    
         sections.forEach(section => {
             section.style.display = "none";
         });
     });
+    
 
     document.querySelectorAll("a").forEach(link => {
         link.addEventListener("click", () => {
