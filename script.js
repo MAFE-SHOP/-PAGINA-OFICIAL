@@ -19,6 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
+    // Secciones a ocultar y mostrar nuevamente
     const sections = [
         "#agroquimicos",
         "#macetas",
@@ -28,22 +29,6 @@ document.addEventListener("DOMContentLoaded", () => {
         "#oportunidades"
     ].map(id => document.querySelector(id)).filter(el => el);
 
-    document.getElementById('search-button').addEventListener('click', function(e) {
-        e.preventDefault();
-        
-        const main = document.querySelector('#main');
-        const offset = main.getBoundingClientRect().top + window.scrollY - 50; // Ajusta el -50 si es necesario
-    
-        window.scrollTo({
-            top: offset,
-            behavior: 'smooth'
-        });
-    
-        sections.forEach(section => {
-            section.style.display = "none";
-        });
-    });
-    
 
     document.querySelectorAll("a").forEach(link => {
         link.addEventListener("click", () => {
@@ -53,6 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
+    // Menú desplegable
     const ul = document.querySelector("#ul");
     const abrir = document.querySelector("#abrir");
     const cerrar = document.querySelector("#cerrar");
@@ -60,7 +46,6 @@ document.addEventListener("DOMContentLoaded", () => {
     abrir.addEventListener("click", () => ul.classList.add("visible"));
     cerrar.addEventListener("click", () => ul.classList.remove("visible"));
 
-    
     let hideText_btn = document.getElementById("hideText_btn");
     let hideText = document.getElementById("hideText");
 
@@ -104,33 +89,64 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // Funcionalidad del buscador
-    document.getElementById('search-button').addEventListener('click', function(e) {
+    document.getElementById('search-button').addEventListener('click', function (e) {
         e.preventDefault();
     
+        const main = document.querySelector('#main');
+        const offset = main.getBoundingClientRect().top + window.scrollY - 50;
+        window.scrollTo({ top: offset, behavior: 'smooth' });
+    
+        if (typeof sections !== 'undefined') {
+            sections.forEach(section => {
+                section.style.display = "none";
+            });
+        }
+    
+        filtrarProductos();
+    });
+    
+    document.getElementById('search-button').addEventListener('click', function (e) {
+        e.preventDefault();
+        scrollToProducts();
+        filtrarProductos();
+    });
+    
+    document.getElementById('search-input').addEventListener('input', function () {
+        filtrarProductos();
+    });
+    
+    // Función para filtrar productos
+    function filtrarProductos() {
         let filter = document.getElementById('search-input').value.toLowerCase();
         let products = document.querySelectorAll('.product');
-        let found = false; 
+        let message = document.getElementById('no-results-message');
+        let found = false;
     
         products.forEach(product => {
             let productName = product.getAttribute('data-name').toLowerCase();
-            if (productName.includes(filter)) {
-                product.style.display = '';
-                found = true; 
+            if (filter === "" || productName.includes(filter)) {
+                product.style.display = "";
+                found = true;
             } else {
-                product.style.display = 'none';
+                product.style.display = "none";
             }
         });
     
         updateSliderVisibility();
     
-       
         if (!found && filter !== "") {
-            setTimeout(() => {
-                alert("No se pudo encontrar ningún producto, por favor escriba otro nombre");
-            }, 600); 
+            message.style.display = "block";
+        } else {
+            message.style.display = "none";
         }
-    });
-
+    }
+    
+    // Función para hacer scroll a los productos
+    function scrollToProducts() {
+        const main = document.querySelector('#main');
+        const offset = main.getBoundingClientRect().top + window.scrollY - 50;
+        window.scrollTo({ top: offset, behavior: 'smooth' });
+    }
 
     function updateSliderVisibility() {
         document.querySelectorAll(".slider-container").forEach(container => {
@@ -145,7 +161,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 });
 
-//Desplazamieento y estilos del input
 document.addEventListener("DOMContentLoaded", () => {
     const searchBar = document.querySelector(".search-bar");
     const searchInput = document.getElementById("search-input");
@@ -158,9 +173,8 @@ document.addEventListener("DOMContentLoaded", () => {
             searchBar.style.width = "100%";
             searchBar.style.zIndex = "1000";
         } else {
+
             searchBar.removeAttribute("style");
         }
     });
 });
-
-  //AVISO: Cantidad de productos data-id: (323)
