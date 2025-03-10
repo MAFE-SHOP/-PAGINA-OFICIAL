@@ -181,14 +181,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
     searchInput.addEventListener("input", function () {
         if (this.value.trim() !== "") {
+            // Aplica los estilos cuando el input no está vacío
             searchBar.style.position = "fixed";
             searchBar.style.top = "10px";
             searchBar.style.left = "25%";
             searchBar.style.width = "100%";
-            searchBar.style.zIndex = "1000";
+            searchBar.style.zIndex = "10";
         } else {
-
+            // Elimina los estilos y vuelve al inicio de la página
             searchBar.removeAttribute("style");
+            window.scrollTo(0, 0); // Desplaza la página al inicio
         }
     });
 });
