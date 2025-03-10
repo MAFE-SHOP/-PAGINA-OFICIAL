@@ -22,7 +22,10 @@
                 <input type="text" id="search-input" placeholder="Buscar productos...">
                 <button id="search-button"><i class='bx bx-search'></i></button>
             </div>
-            <a href="carrito.html"><img src="images/cart-regular-24.png" alt="" style="z-index: 1;"></a>
+            <a href="carrito.html" class="cart-container" style="position: fixed; z-index: 1;">
+                <img src="images/cart-regular-24.png" alt="Carrito">
+                <span id="cart-count">0</span>
+            </a>
             <nav class="navbar">
                 <ul id="ul" class="ul">
                     <button id="cerrar" class="cerrar-menu"><b>X</b></button>
