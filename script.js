@@ -16,6 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const productName = product.getAttribute("data-name");
             const productPrice = parseFloat(product.getAttribute("data-price"));
 
+            // Actualizamos primero el carrito
             if (cartItems[productId]) {
                 cartItems[productId].quantity++;
             } else {
@@ -23,7 +24,11 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
             localStorage.setItem("cart", JSON.stringify(cartItems));
+
+            // Actualizamos el contador
             updateCartCount();
+
+            // Mostramos la alerta después de la actualización
             alert(`${productName} agregado al carrito`);
         });
     });
