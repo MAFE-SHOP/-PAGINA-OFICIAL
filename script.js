@@ -16,7 +16,6 @@ document.addEventListener("DOMContentLoaded", () => {
             const productName = product.getAttribute("data-name");
             const productPrice = parseFloat(product.getAttribute("data-price"));
 
-            // Actualizamos primero el carrito
             if (cartItems[productId]) {
                 cartItems[productId].quantity++;
             } else {
@@ -25,11 +24,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
             localStorage.setItem("cart", JSON.stringify(cartItems));
 
-            // Actualizamos el contador
             updateCartCount();
 
-            // Mostramos la alerta después de la actualización
-            alert(`${productName} agregado al carrito`);
+            setTimeout(() => {
+                alert(`${productName} agregado al carrito`);
+            }, 0);
         });
     });
 
@@ -133,7 +132,7 @@ document.addEventListener("DOMContentLoaded", () => {
     function filtrarProductos() {
         let filter = document.getElementById('search-input').value.toLowerCase();
         let products = document.querySelectorAll('.product');
-        let sliders = document.querySelectorAll('.slider-container'); // Contenedor completo del slider
+        let sliders = document.querySelectorAll('.slider-container');
         let message = document.getElementById('no-results-message');
         let found = false;
     
@@ -154,17 +153,24 @@ document.addEventListener("DOMContentLoaded", () => {
             let buttons = sliderContainer.querySelector('.buttons');
     
             if (visibleProducts.length === 0) {
-                sliderContainer.style.display = "none";
+                sliderContainer.style.display = "none"; 
             } else {
                 sliderContainer.style.display = ""; 
             }
-    
+            
             if (visibleProducts.length <= 1) {
                 buttons.style.display = "none";
             } else {
                 buttons.style.display = "";
             }
         });
+    
+        if (!found && filter !== "") {
+            message.style.display = "block";
+        } else {
+            message.style.display = "none";
+        }
+    }
     
     // Función para hacer scroll a los productos
     function scrollToProducts() {
@@ -206,7 +212,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     behavior: 'smooth'
                 });
             };
-
+            
             requestAnimationFrame(scrollToTop);
         }
     });
