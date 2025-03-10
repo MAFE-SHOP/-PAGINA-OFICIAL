@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
         cartCount.textContent = totalItems;
     }
 
-    updateCartCount();
+    updateCartCount(); 
 
     document.querySelectorAll(".add-to-cart").forEach(button => {
         button.addEventListener("click", (e) => {
@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
             localStorage.setItem("cart", JSON.stringify(cartItems));
-            updateCartCount(); // Actualiza el contador después de agregar un producto
+            updateCartCount();
             alert(`${productName} agregado al carrito`);
         });
     });
