@@ -1,5 +1,13 @@
 document.addEventListener("DOMContentLoaded", () => {
     const cartItems = JSON.parse(localStorage.getItem("cart")) || {};
+    const cartCount = document.getElementById("cart-count");
+
+    function updateCartCount() {
+        let totalItems = Object.values(cartItems).reduce((acc, item) => acc + item.quantity, 0);
+        cartCount.textContent = totalItems;
+    }
+
+    updateCartCount();
 
     document.querySelectorAll(".add-to-cart").forEach(button => {
         button.addEventListener("click", (e) => {
@@ -15,6 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
             localStorage.setItem("cart", JSON.stringify(cartItems));
+            updateCartCount(); // Actualiza el contador después de agregar un producto
             alert(`${productName} agregado al carrito`);
         });
     });
