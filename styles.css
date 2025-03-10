@@ -63,22 +63,27 @@ img {
     float: left;
 }
 
-.menu a img {
+.cart-container {
     position: fixed;
-    top: 45px;
-    left: 3.5%;
+    top: 8px;
+    left: 15px;
     border-radius: 50%;
-    padding: 7px;
-    background-color: rgba(255, 99, 71, 0.603);
+    padding: 24px;
+    background-color: rgba(255, 99, 71, 0.699);
 }
-
-#cuenta-carrito {
+.cart-container img {
     position: fixed;
-    top: 60px;
-    left: 6%;
-    background-color: tomato;
-    border-radius: 50%;
-    padding: 4px;
+    top: 15px;
+    left: 21px;
+    font-size: 20px;
+}
+#cart-count {
+    font-size: 13px;
+    font-weight: 600;
+    color: black;
+    position: fixed;
+    top: 30px;
+    left: 43px;
 }
 
 .ul {
@@ -491,19 +496,6 @@ link a:hover {
     }
     .navbar ul li a {
         color: #ffff;
-    }
-    .menu a img {
-        position: fixed;
-        top: 15px;
-        left: 7%;
-        border-radius: 50%;
-        padding: 7px;
-    }
-    #cuenta-carrito {
-        position: fixed;
-        top: 33px;
-        left: 12.3%;
-        padding: 2px;
     }
     .ul{
         opacity: 0;
