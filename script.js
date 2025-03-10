@@ -132,7 +132,6 @@ document.addEventListener("DOMContentLoaded", () => {
     function filtrarProductos() {
         let filter = document.getElementById('search-input').value.toLowerCase();
         let products = document.querySelectorAll('.product');
-        let sliders = document.querySelectorAll('.slider-container');
         let message = document.getElementById('no-results-message');
         let found = false;
     
@@ -146,24 +145,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
     
-        // Revisar cada slider-container
-        sliders.forEach(sliderContainer => {
-            let slider = sliderContainer.querySelector('.slider');
-            let visibleProducts = slider.querySelectorAll('.product:not([style*="display: none"])');
-            let buttons = sliderContainer.querySelector('.buttons');
-    
-            if (visibleProducts.length === 0) {
-                sliderContainer.style.display = "none"; 
-            } else {
-                sliderContainer.style.display = ""; 
-            }
-            
-            if (visibleProducts.length <= 1) {
-                buttons.style.display = "none";
-            } else {
-                buttons.style.display = "";
-            }
-        });
+        updateSliderVisibility();
     
         if (!found && filter !== "") {
             message.style.display = "block";
@@ -171,7 +153,6 @@ document.addEventListener("DOMContentLoaded", () => {
             message.style.display = "none";
         }
     }
-    
     // Función para hacer scroll a los productos
     function scrollToProducts() {
         const main = document.querySelector('#main');
